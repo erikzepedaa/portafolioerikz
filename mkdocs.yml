@@ -1,0 +1,40 @@
+site_name: Plantilla para Documentación
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.critic:
+      mode: view
+  - pymdownx.caret
+  - pymdownx.keys
+  - def_list
+  - attr_list
+  - md_in_html
+  - pymdownx.blocks.caption
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+      clickable_checkbox: true
+# Use the ReadTheDocs theme
+theme:
+  name: material
+  highlightjs: true 
+  palette:
+      - scheme: default
+        primary: red
+
+  features:
+    - content.code.copy
+    - content.tooltips
+extra_css:
+  - https://use.fontawesome.com/releases/v6.5.2/css/all.css
+  - https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css
+
