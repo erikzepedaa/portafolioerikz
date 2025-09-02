@@ -9,8 +9,7 @@ En esta pagina resumire todos los proyectos que realice, con el fin de compartir
 - Trabajo en equipo 
 - Facilidad de aprendizaje
 
+contacto: 204440@iberopuebla.mx | 5529692902
 
-![Diagrama del sistema](recursos/imgs/IMG_7211.JPG)
-<!-- Control de tamaño usando HTML (cuando se requiera) -->
 <img src="../recursos/imgs/IMG_7211.JPG" alt="Diagrama del sistema" width="420">
 
