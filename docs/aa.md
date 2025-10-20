@@ -5,7 +5,9 @@ El objetivo principal de esta práctica fue comprender el funcionamiento básico
 Comprender el funcionamiento de entradas digitales en Arduino y aplicar este conocimiento para controlar un LED mediante un pulsador físico.
 ## Organización del Equipo
 El equipo se dividió en dos áreas principales: desarrollo del codigo de programacion y desarrollo electrónico.
-##Materiales Utilizados- **Arduino UNO**
+
+## Materiales Utilizados
+- **Arduino UNO**
 - **Protoboard**  
 - **LED rojo**  
 - **Resistencia de 220Ω** (limitadora para el LED)  
