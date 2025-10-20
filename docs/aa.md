@@ -1,4 +1,4 @@
-# 📌 Nombre del Proyecto
+# 📌 Trabajo 1
 
 **Descripción breve:**  
 Una introducción concisa que explique de qué trata el proyecto, su propósito y qué problema resuelve.
