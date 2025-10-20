@@ -1,4 +1,4 @@
-site_name: Plantilla para Documentación
+site_name: Bitacora Web de Erik Zepeda
 markdown_extensions:
   - pymdownx.highlight:
       anchor_linenums: true
