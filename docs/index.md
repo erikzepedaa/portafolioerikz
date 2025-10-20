@@ -1,4 +1,4 @@
-# 📌 Vehículo Controlado por Bluetooth con Motores DC
+# Vehículo Controlado por Bluetooth con Motores DC
 
 ## Proposito  
 Este proyecto consistió en el diseño y construcción de un vehículo a control remoto, utilizando motores de corriente directa (DC), un puente H para el control de dirección, y un microcontrolador ESP32 para la comunicación vía Bluetooth. El objetivo principal fue aplicar conocimientos básicos de electrónica, mecánica y programación para competir en una dinámica de robótica.
