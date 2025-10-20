@@ -1,6 +1,6 @@
 # 📌 Vehículo Controlado por Bluetooth con Motores DC
 
-## Proposito:  
+## Proposito  
 Este proyecto consistió en el diseño y construcción de un vehículo a control remoto, utilizando motores de corriente directa (DC), un puente H para el control de dirección, y un microcontrolador ESP32 para la comunicación vía Bluetooth. El objetivo principal fue aplicar conocimientos básicos de electrónica, mecánica y programación para competir en una dinámica de robótica.
 
 ---
@@ -22,7 +22,7 @@ Incluye:
 - **Pruebas funcionales previas a la competencia**
 ---
 # Proceso de Trabajo 
-
+---
 ## Organización del Equipo
 El equipo se dividió en dos áreas principales: diseño mecánico y desarrollo electrónico. Mientras algunos miembros se encargaron de la estructura del coche, otros se enfocaron en la programación y conexiones.
 ##Materiales Utilizados
@@ -37,7 +37,7 @@ El equipo se dividió en dos áreas principales: diseño mecánico y desarrollo 
 - **MDF para la base**
 - **PLA para impresión 3D de la pala frontal**
 
-##  Tecnologías Utilizadas
+## Tecnologías Utilizadas
 
 - **Lenguajes:** `Python`, `C++`
 - **Hardware:** `ESP32`, `Arduino`
