@@ -1,7 +1,7 @@
 # Encendido de LED con Pulsador usando Arduino
 ## Proposito
 El objetivo principal de esta práctica fue comprender el funcionamiento básico de entradas y salidas digitales en Arduino. Se buscó controlar el encendido de un LED utilizando un botón físico conectado a una protoboard, aplicando conceptos fundamentales de electrónica como resistencias pull-down y lógica de control.
-## Metas del Proyecto
+## Meta de la practica
 Comprender el funcionamiento de entradas digitales en Arduino y aplicar este conocimiento para controlar un LED mediante un pulsador físico.
 ## Organización del Equipo
 El equipo se dividió en dos áreas principales: desarrollo del codigo de programacion y desarrollo electrónico.
