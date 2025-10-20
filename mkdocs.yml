@@ -29,7 +29,7 @@ theme:
   highlightjs: true 
   palette:
       - scheme: default
-        primary: red
+        primary: blue
 
   features:
     - content.code.copy
