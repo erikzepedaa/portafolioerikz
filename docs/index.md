@@ -68,9 +68,9 @@ Los movimientos eran algo bruscos, lo que dificultaba la precisión.
 A pesar de estos detalles, el coche cumplió con los objetivos técnicos del proyecto.
 
 ## Evidencias
-[Ver en YouTube](https://www.youtube.com/shorts/-BoEvhaO5zg)
+[Ver la primera prueba del coche en YouTube](https://www.youtube.com/shorts/-BoEvhaO5zg)
 ## Un poco del partido 
-[Ver en Youtube](https://youtube.com/shorts/NI1Ql_M5b0c?si=xRWL49X0EMeyh-0k)
+[Ver un poco de la competencia en Youtube](https://youtube.com/shorts/NI1Ql_M5b0c?si=xRWL49X0EMeyh-0k)
 
 ## Reflexiones Finales
 El proyecto fue una excelente oportunidad para aplicar conocimientos teóricos en un entorno práctico. Se logró integrar electrónica, mecánica y programación en un sistema funcional. Algunas áreas de mejora identificadas fueron:
