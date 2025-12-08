@@ -115,7 +115,7 @@ Se eligió PLA (impresión FDM) por su facilidad de fabricación y rigidez adecu
 
 
 ## Programación
-Todod los codigos desarrollados por el equipo se encuentran al final del reporte :)
+Todos los codigos desarrollados por el equipo se encuentran al final del reporte :)
 
 <img src="../recursos/imgs/F1.jpg" alt="Diagrama del sistema" width="320">
 <img src="../recursos/imgs/F3.jpg" alt="Diagrama del sistema" width="320">
