@@ -80,15 +80,14 @@ Se eligió PLA (impresión FDM) por su facilidad de fabricación y rigidez adecu
 ## Programación
 Todod los codigos desarrollados por el equipo se encuentran al final del reporte :)
 
-<img src="../recursos/imgs/F1" alt="Diagrama del sistema" width="320">
-<img src="../recursos/imgs/F3" alt="Diagrama del sistema" width="320">
-<img src="../recursos/imgs/F4" alt="Diagrama del sistema" width="320">
-<img src="../recursos/imgs/F5" alt="Diagrama del sistema" width="320">
-<img src="../recursos/imgs/F6" alt="Diagrama del sistema" width="320">
-<img src="../recursos/imgs/F7" alt="Diagrama del sistema" width="320">
-<img src="../recursos/imgs/F8" alt="Diagrama del sistema" width="320">
-<img src="../recursos/imgs/F9" alt="Diagrama del sistema" width="320">
-
+<img src="../recursos/imgs/F1.jpg" alt="Diagrama del sistema" width="320">
+<img src="../recursos/imgs/F3.jpg" alt="Diagrama del sistema" width="320">
+<img src="../recursos/imgs/F4.jpg" alt="Diagrama del sistema" width="320">
+<img src="../recursos/imgs/F5.jpg" alt="Diagrama del sistema" width="320">
+<img src="../recursos/imgs/F6.jpg" alt="Diagrama del sistema" width="320">
+<img src="../recursos/imgs/F7.jpg" alt="Diagrama del sistema" width="320">
+<img src="../recursos/imgs/F8.jpg" alt="Diagrama del sistema" width="320">
+<img src="../recursos/imgs/F9.jpg" alt="Diagrama del sistema" width="320">
 
 
 
