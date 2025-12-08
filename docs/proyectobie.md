@@ -10,10 +10,10 @@
 
 ---
 
-## Proposito
+## Objetivo Principal
 El objetivo principal es mantener un objeto, específicamente una pelota, en una posición fija sobre la superficie de la plataforma, evitando su caída.
 
-## Específicos:
+## Objetivos Específicos:
 Visión por Computadora: Una cámara captura la posición y el color (rojo) de la pelota en tiempo real.
 Control: La información de la cámara es procesada por un programa en phyton que manda información a un programa c++ que se encarga del control de un SP32, que a su ves controla los servomotores.
 Actuación: La nivelación se ejecuta mediante el control preciso de tres servomotores ubicados con una separación de un angulo de 120°, los cuales ajustan los actuadores de la plataforma para inclinar y desplazar el plano y así mantener la pelota en el centro.
