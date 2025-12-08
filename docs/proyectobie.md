@@ -134,12 +134,6 @@ No se presentaron errores de transmisión ni desconexiones durante la prueba.
 [Ver en YouTube](https://youtube.com/shorts/Mo1GiXa5FQk?si=V_IwKdBk0SmisMpB)
 [Ver en YouTube](https://youtube.com/shorts/oSkWEF_ZbRw?si=tQmtDbEzEKuWXeTJ)
 
-
-## Reflexiones Finales
-Esta práctica permitió entender cómo se establece una comunicación serial inalámbrica entre un microcontrolador y un dispositivo móvil.
-Se reforzó el uso de librerías específicas como BluetoothSerial y la importancia de configurar correctamente la velocidad de transmisión.
-Fue útil para visualizar cómo los datos enviados desde una app pueden ser procesados en tiempo real por el ESP32 y mostrados en la computadora.
-
 ## Piezas Diseñadas en STL
 Diseño de piezas en STL
 Las piezas del proyecto fueron modeladas en software CAD y exportadas en formato STL para su fabricación mediante impresión 3D. En las siguientes imágenes, tomadas desde PrusaSlicer, se aprecia la disposición y orientación de las piezas sobre la cama de impresión, así como los parámetros de configuración utilizados para optimizar la calidad y resistencia:
@@ -151,6 +145,11 @@ Estas configuraciones garantizan una fabricación precisa, reduciendo desperdici
 <img src="../recursos/imgs/F8.jpg" alt="Diagrama del sistema" width="320">
 <img src="../recursos/imgs/F9.jpg" alt="Diagrama del sistema" width="320">
 
+
+
+## Reflexiones Finales
+Reflexiones finales
+El desarrollo de este proyecto permitió integrar conocimientos de electrónica, diseño mecánico y control mediante programación, consolidando una solución funcional y robusta. La experiencia evidenció la importancia de una correcta planificación eléctrica para garantizar la estabilidad del sistema, así como el valor del diseño en CAD para optimizar la fabricación de piezas en impresión 3D. Además, se comprobó que la selección adecuada de componentes —como servos de alto torque y una fuente confiable— es clave para la seguridad y el rendimiento. Este trabajo no solo cumplió con los objetivos planteados, sino que también abrió oportunidades para futuras mejoras, como la optimización del consumo energético y la incorporación de sistemas más avanzados de control y sensorización.
 
 ## Codigo Principal
 
