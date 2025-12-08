@@ -91,7 +91,8 @@ El ESP32 respondió de forma inmediata a los datos recibidos.
 No se presentaron errores de transmisión ni desconexiones durante la prueba.
 
 ## Evidencias
-[Ver en YouTube](YT)
+[Ver en YouTube](https://youtube.com/shorts/Mo1GiXa5FQk?si=V_IwKdBk0SmisMpB)
+[Ver en YouTube](https://youtube.com/shorts/oSkWEF_ZbRw?si=tQmtDbEzEKuWXeTJ)
 
 ## Reflexiones Finales
 Esta práctica permitió entender cómo se establece una comunicación serial inalámbrica entre un microcontrolador y un dispositivo móvil.
