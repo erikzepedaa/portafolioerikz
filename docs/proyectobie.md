@@ -148,8 +148,11 @@ Estas configuraciones garantizan una fabricación precisa, reduciendo desperdici
 
 
 ## Reflexiones Finales
-Reflexiones finales
-El desarrollo de este proyecto permitió integrar conocimientos de electrónica, diseño mecánico y control mediante programación, consolidando una solución funcional y robusta. La experiencia evidenció la importancia de una correcta planificación eléctrica para garantizar la estabilidad del sistema, así como el valor del diseño en CAD para optimizar la fabricación de piezas en impresión 3D. Además, se comprobó que la selección adecuada de componentes —como servos de alto torque y una fuente confiable— es clave para la seguridad y el rendimiento. Este trabajo no solo cumplió con los objetivos planteados, sino que también abrió oportunidades para futuras mejoras, como la optimización del consumo energético y la incorporación de sistemas más avanzados de control y sensorización.
+Al comenzar este proyecto, enfrentamos un gran desafío tanto en la parte mecánica como en la lógica de programación, ya que era un territorio nuevo dentro de nuestros conocimientos. Puedo decir que la visión artificial resultó ser una herramienta muy práctica y útil en nuestra vida diaria; nunca imaginábamos todo lo que podríamos lograr aplicándola.
+
+Durante el desarrollo aprendimos a gestionar mejor nuestro tiempo, a ver más allá de la electrónica e incorporar también los aspectos mecánicos, físicos y cinemáticos del sistema. Esto nos permitió comprender mejor el comportamiento del conjunto y detectar fallas con mayor precisión, como la inclinación de los servomotores, las librerías utilizadas, los métodos de detección y los materiales empleados.
+
+A pesar de ser un proceso exigente y lleno de retos, también fue una experiencia divertida y emocionante. Sin duda, esperamos realizar más proyectos de este tipo en el futuro para seguir aprendiendo y mejorando nuestras habilidades en ingeniería mecatrónica.sino que también abrió oportunidades para futuras mejoras, como la optimización del consumo energético y la incorporación de sistemas más avanzados de control y sensorización.
 
 ## Codigo Principal
 
