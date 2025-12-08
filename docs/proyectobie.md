@@ -72,7 +72,43 @@ El equipo se dividió en dos áreas principales: desarrollo del codigo de progra
 
 
 ## Sistema Electrónico
-El ESP32 se conectó a la computadora mediante USB. No se utilizaron componentes externos como sensores o actuadores, ya que el enfoque fue exclusivamente en la comunicación serial por Bluetooth. El ESP32 se configuró como servidor Bluetooth para que el celular pudiera detectarlo y conectarse.
+Componentes principales
+-Controlador: ESP32 (Wi-Fi/Bluetooth integrado).
+-Actuadores: 3 servos de alto torque (15 kg·cm, 180°).
+-Fuente: Adaptador 5 V (corriente suficiente para 3 servos + ESP32).
+-Interconexión: Protoboard + jumpers.
+-Extras: Webcam Logitech (alimentación USB), volante Logitech G29 (alimentación propia), tornillería para montaje.
+
+
+## Diseño eléctrico y consideraciones
+1. Alimentación
+
+Servos: Cada servo de 15 kg puede consumir hasta 2–3 A en picos (stall). Para 3 servos, considera fuente ≥10 A @ 5 V para evitar caídas.
+ESP32: Consumo típico 250–400 mA con Wi-Fi activo.
+Distribución:
+
+Rail 5 V → servos + regulador 3.3 V para ESP32 (si no usas el integrado).
+Masa común en topología estrella para evitar ruido.
+
+
+
+2. Protecciones
+
+Fusible rearmable (polyfuse) en la entrada.
+Capacitores bulk (≥470 µF por servo) cerca de los conectores.
+Diodos flyback no son necesarios en servos (internos), pero sí en motores DC si agregas más adelante.
+
+3. Control de servos
+
+Señal PWM desde ESP32 (LEDC) a cada servo.
+Usa cables cortos y gruesos para alimentación (AWG20–22).
+Señal PWM con resistencia serie (33–68 Ω) para evitar ringing.
+
+4. Interferencia y estabilidad
+
+Desacoplo: 100 nF + 10 µF cerca del ESP32.
+Ferritas en líneas de alimentación si notas ruido.
+Evita alimentar servos desde el pin 5 V del ESP32 (no soporta la corriente).
 
 ## Ingeniería de la carcasa
 Se eligió PLA (impresión FDM) por su facilidad de fabricación y rigidez adecuada para temperaturas hasta ~55–60 °C. Las paredes principales son de 2.4 mm (tres perímetros de 0.8 mm), con nervaduras internas de 3 mm para reducir flexión en la tapa superior. Se añadieron insertos roscados M3 por calor en cuatro pilares, mejorando el ciclo de mantenimiento sin degradar el material. La ventilación se resolvió con ranuras de 6×1 mm alineadas sobre el regulador DC-DC y el driver del motor; la orientación de capa minimiza concentraciones de tensión en las esquinas (chaflanes de 1.5 mm). Se verificó holgura de 0.3 mm para acoplar el sensor N y evitar interferencias con el mazo de cables.
