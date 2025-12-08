@@ -77,6 +77,12 @@ El ESP32 se conectó a la computadora mediante USB. No se utilizaron componentes
 ## Ingeniería de la carcasa
 Se eligió PLA (impresión FDM) por su facilidad de fabricación y rigidez adecuada para temperaturas hasta ~55–60 °C. Las paredes principales son de 2.4 mm (tres perímetros de 0.8 mm), con nervaduras internas de 3 mm para reducir flexión en la tapa superior. Se añadieron insertos roscados M3 por calor en cuatro pilares, mejorando el ciclo de mantenimiento sin degradar el material. La ventilación se resolvió con ranuras de 6×1 mm alineadas sobre el regulador DC-DC y el driver del motor; la orientación de capa minimiza concentraciones de tensión en las esquinas (chaflanes de 1.5 mm). Se verificó holgura de 0.3 mm para acoplar el sensor N y evitar interferencias con el mazo de cables.
 
+<img src="../recursos/imgs/F6.jpg" alt="Diagrama del sistema" width="320">
+<img src="../recursos/imgs/F7.jpg" alt="Diagrama del sistema" width="320">
+<img src="../recursos/imgs/F8.jpg" alt="Diagrama del sistema" width="320">
+<img src="../recursos/imgs/F9.jpg" alt="Diagrama del sistema" width="320">
+
+
 ## Programación
 Todod los codigos desarrollados por el equipo se encuentran al final del reporte :)
 
@@ -84,10 +90,6 @@ Todod los codigos desarrollados por el equipo se encuentran al final del reporte
 <img src="../recursos/imgs/F3.jpg" alt="Diagrama del sistema" width="320">
 <img src="../recursos/imgs/F4.jpg" alt="Diagrama del sistema" width="320">
 <img src="../recursos/imgs/F5.jpg" alt="Diagrama del sistema" width="320">
-<img src="../recursos/imgs/F6.jpg" alt="Diagrama del sistema" width="320">
-<img src="../recursos/imgs/F7.jpg" alt="Diagrama del sistema" width="320">
-<img src="../recursos/imgs/F8.jpg" alt="Diagrama del sistema" width="320">
-<img src="../recursos/imgs/F9.jpg" alt="Diagrama del sistema" width="320">
 
 
 
