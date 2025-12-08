@@ -141,7 +141,11 @@ Se reforzó el uso de librerías específicas como BluetoothSerial y la importan
 Fue útil para visualizar cómo los datos enviados desde una app pueden ser procesados en tiempo real por el ESP32 y mostrados en la computadora.
 
 ## Piezas Diseñadas en STL
-Se realizo una serie de piezas para la base, la balsa y hasta la pelota 
+Diseño de piezas en STL
+Las piezas del proyecto fueron modeladas en software CAD y exportadas en formato STL para su fabricación mediante impresión 3D. En las siguientes imágenes, tomadas desde PrusaSlicer, se aprecia la disposición y orientación de las piezas sobre la cama de impresión, así como los parámetros de configuración utilizados para optimizar la calidad y resistencia:
+
+Estas configuraciones garantizan una fabricación precisa, reduciendo desperdicio de material y asegurando la funcionalidad mecánica del conjunto.
+
 <img src="../recursos/imgs/F6.jpg" alt="Diagrama del sistema" width="320">
 <img src="../recursos/imgs/F7.jpg" alt="Diagrama del sistema" width="320">
 <img src="../recursos/imgs/F8.jpg" alt="Diagrama del sistema" width="320">
