@@ -94,6 +94,7 @@ No se presentaron errores de transmisión ni desconexiones durante la prueba.
 [Ver en YouTube](https://youtube.com/shorts/Mo1GiXa5FQk?si=V_IwKdBk0SmisMpB)
 [Ver en YouTube](https://youtube.com/shorts/oSkWEF_ZbRw?si=tQmtDbEzEKuWXeTJ)
 
+
 ## Reflexiones Finales
 Esta práctica permitió entender cómo se establece una comunicación serial inalámbrica entre un microcontrolador y un dispositivo móvil.
 Se reforzó el uso de librerías específicas como BluetoothSerial y la importancia de configurar correctamente la velocidad de transmisión.
