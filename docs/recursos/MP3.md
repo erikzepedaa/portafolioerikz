@@ -1,6 +1,6 @@
-# Control de Giro, Velocidad y Posición con ESP32
+# Proyecto PCB para MP3
 ## Proposito
-Explorar el control de motores mediante el ESP32, aplicando técnicas de cambio de giro, variación de velocidad con PWM y posicionamiento de servo motores.
+En este proyecto realizaremos Sebastian y yo un mp3 y para ello elaboraremos una placa pcb para conectar todos los componentes 
 ## Meta de la practica
 Comprender cómo controlar motores DC y servos utilizando programación en ESP32, aplicando conceptos de lógica digital, modulación por ancho de pulso (PWM) y mapeo de valores para posicionamiento.
 ## Organización del Equipo
