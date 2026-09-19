@@ -1,10 +1,4 @@
-# Guía Definitiva: Flujo de Trabajo Integrado (KiCad + Mods + Roland SRM-20)
-
-Esta es la guía estandarizada para la elaboración, exportación y fabricación de placas de circuito impreso (PCB) mediante fresado CNC local, integrando el repositorio especializado de componentes (`fablib`).
-
----
-
-## Autores del Proyecto
+<h1>Flujo de Trabajo: Diseño y Manufactura CNC (KiCad + Mods)</h1>
 
 <table width="100%">
   <tr>
@@ -23,165 +17,156 @@ Esta es la guía estandarizada para la elaboración, exportación y fabricación
   </tr>
 </table>
 
----
+<h2>Gestión del Entorno y Librerías</h2>
+<p>Esta documentación define el estándar operativo para la elaboración, exportación y fabricación de placas de circuito impreso (PCB) mediante fresado CNC local, garantizando la compatibilidad con el repositorio especializado de componentes para prototipado.</p>
 
-## Tabla de Contenido
-- [1. Introducción y Arquitectura del Entorno](#1-introducción-y-arquitectura-del-entorno)
-- [2. Configuración y Despliegue de Librerías (Fab Lab)](#2-configuración-y-despliegue-de-librerías-fab-lab)
-- [3. Maquetación del Editor de Esquemas (Schematic Editor)](#3-maquetación-del-editor-de-esquemas-schematic-editor)
-- [4. Enrutamiento y Diseño de Placas (PCB Editor)](#4-enrutamiento-y-diseño-de-placas-pcb-editor)
-- [5. Validación Avanzada (DRC) y Salidas de Fabricación](#5-validación-avanzada-drc-y-salidas-de-fabricación)
-- [6. Flujo de Preparación CAM y Maquinado CNC (Roland SRM-20)](#6-flujo-de-preparación-cam-y-maquinado-cnc-roland-srm-20)
+<h3>Arquitectura e Instalación</h3>
+<p>El gestor de proyectos opera como el núcleo centralizador para la administración de jerarquías, bases de datos de huellas y archivos de salida de manufactura. Descargue el ejecutable desde el portal oficial de KiCad y seleccione un servidor de distribución geográficamente cercano.</p>
 
----
+<img src="../recursos/imgs/kicad_pantalla_completa_general.png" alt="Vista general del gestor de proyectos" class="img-fluida">
 
-## 1. Introducción y Arquitectura del Entorno
+<div class="img-grid">
+    <img src="../recursos/imgs/kicad_seleccion_so.png" alt="Selección de SO" class="img-fluida">
+    <img src="../recursos/imgs/kicad_espejos_descarga.png" alt="Espejos de descarga" class="img-fluida">
+</div>
 
-El gestor de proyectos de KiCad opera como el núcleo centralizador para la administración de jerarquías, esquemáticos, bases de datos de huellas y archivos de salida de manufactura.
+<h3>Despliegue de Librería FabLab</h3>
+<p>La integración de repositorios locales es indispensable para asegurar la correspondencia entre el diseño digital y el inventario físico del laboratorio.</p>
+<ol>
+    <li>Navegue al menú <b>Herramientas</b> y ejecute el <b>Administrador de complementos y contenidos</b>.</li>
+    <li>Localice el paquete <b>FABLIB</b> en la pestaña de bibliotecas y proceda con la instalación.</li>
+    <li>Seleccione <b>Aplicar cambios pendientes</b>.</li>
+    <li>Reinicie la instancia de KiCad obligatoriamente para indexar los nuevos símbolos y huellas en el sistema.</li>
+</ol>
 
-### Panel de Control
+<img src="../recursos/imgs/fablib_instalacion.png" alt="Instalación de Fablib" class="img-fluida">
 
-<img src="../recursos/imgs/kicad_pantalla_completa_general.png" alt="Vista general del gestor de proyectos KiCad" width="800">
+<h2>Captura Esquemática</h2>
+<p>El entorno esquemático define la topología lógica del circuito y establece las relaciones funcionales mediante símbolos normalizados.</p>
 
----
+<h3>Topología y Espacio de Trabajo</h3>
+<p>Configure la retícula de trabajo estrictamente en milímetros (mm) para mantener la escala normalizada. Estructure el plano mediante bloques funcionales (alimentación, interfaces de control, elementos activos) apoyándose en herramientas de texto y delimitadores visuales.</p>
 
-## 2. Configuración y Despliegue de Librerías (Fab Lab)
+<img src="../recursos/imgs/esquematico_pantalla_completa.png" alt="Esquemático completo" class="img-fluida">
+<img src="../recursos/imgs/esquematico_apoyo_visual.png" alt="Bloques organizadores" class="img-fluida">
 
-Para garantizar la compatibilidad con los estándares de prototipado rápido, es indispensable inicializar el software e integrar el repositorio especializado de componentes.
+<h3>Instanciación y Conectividad</h3>
+<ul>
+    <li><b>Asignación de Símbolos (A):</b> Invoque el selector de componentes y filtre exclusivamente por el directorio <code>fablib</code>. Utilice componentes estandarizados como resistencias SMD 1206 o microcontroladores específicos (SeeedStudio XIAO RP2040).</li>
+    <li><b>Orientación (R):</b> Ajuste la posición espacial de cada símbolo para optimizar el flujo visual.</li>
+    <li><b>Enrutamiento Lógico (W / L):</b> Conecte nodos cercanos con trazos directos. Para señales extensas, implemente etiquetas de red globales (VDD, GND, TX, RX) para evitar la saturación del plano.</li>
+</ul>
 
-> 🔗 [Portal oficial de descargas de KiCad](https://www.kicad.org/download/)
+<div class="img-grid">
+    <img src="../recursos/imgs/esquematico_agregar_componente.png" alt="Agregar componente" class="img-fluida">
+    <img src="../recursos/imgs/esquematico_etiquetas.png" alt="Etiquetas de red" class="img-fluida">
+</div>
 
-### Proceso de Configuración Inicial
+<h3>Validación de Reglas (ERC)</h3>
+<p>Ejecute el Verificador de Reglas Eléctricas (ERC) para certificar la estabilidad de la red. Si el sistema arroja advertencias sobre pines de alimentación no controlados, asigne etiquetas <code>PWR_FLAG</code>. El reporte debe resultar libre de conflictos antes de avanzar.</p>
 
-1. **Selección de Plataforma:** Configure el instalador acorde a su entorno de ejecución (Windows, macOS, Linux o contenedores Docker).
+<img src="../recursos/imgs/esquematico_erc.png" alt="Reporte ERC" class="img-fluida">
 
-<img src="../recursos/imgs/kicad_seleccion_so.png" alt="Interfaz de selección de plataforma y sistema operativo" width="600">
+<h2>Diseño Físico (PCB Layout)</h2>
+<p>Esta fase traduce la topología lógica en una topometría física, estableciendo dimensiones de tarjeta, restricciones espaciales y trazos de cobre.</p>
 
-2. **Espejos de Red:** Seleccione un servidor de distribución geográficamente cercano para optimizar la velocidad y estabilidad de descarga.
+<h3>Sincronización de Datos</h3>
+<p>Ejecute el comando <b>Actualizar la placa desde el esquemático (F8)</b>. Este proceso importa la lista de redes (netlist) y los encapsulados físicos al área de trabajo.</p>
 
-<img src="../recursos/imgs/kicad_espejos_descarga.png" alt="Selector de espejos de descarga de paquetes" width="600">
+<img src="../recursos/imgs/pcb_pantalla_completa.png" alt="Vista de PCB Editor" class="img-fluida">
 
-### Integración de `fablib`
+<div class="img-grid">
+    <img src="../recursos/imgs/pcb_actualizar.png" alt="Actualizar PCB Botón" class="img-fluida">
+    <img src="../recursos/imgs/pcb_actualizar1.png" alt="Ventana actualizar PCB" class="img-fluida">
+</div>
 
-1. Acceda al menú superior **Herramientas** e inicie el **Administrador de complementos y contenidos**.
-2. Localice `FABLIB` en el repositorio de bibliotecas, ejecute la descarga, seleccione **Aplicar cambios pendientes** y cierre el asistente.
-3. **Acción crítica:** Reinicie la instancia de KiCad para forzar la indexación de los nuevos símbolos y huellas en el árbol del sistema.
+<h3>Gestión de Capas y Ruteo</h3>
+<ul>
+    <li><b>Restricciones de Pistas:</b> En <i>Editar tamaños predefinidos</i>, fije un grosor de <b>0.4 mm</b> para pistas de señal/datos y <b>0.8 mm</b> para líneas de potencia.</li>
+    <li><b>Trazado:</b> Utilice la herramienta de enrutamiento (X) ejecutando cambios de dirección a <b>45 grados</b>. Evite ángulos rectos para optimizar el paso de la fresa CNC.</li>
+    <li><b>Puentes de Salto:</b> Ante la imposibilidad de rutear sin cruces, retorne al esquemático, integre una resistencia puente de 0 ohms, y sincronice los cambios.</li>
+</ul>
 
-<img src="../recursos/imgs/fablib_instalacion.png" alt="Administrador de complementos con fablib integrado" width="600">
+<div class="img-grid">
+    <img src="../recursos/imgs/pcb_ancho_pistas.png" alt="Anchos predefinidos" class="img-fluida">
+    <img src="../recursos/imgs/pcb_ruteo.png" alt="Ruteo a 45 grados" class="img-fluida">
+</div>
+<img src="../recursos/imgs/pcb_puente_resistencia.png" alt="Puente 0 ohms" class="img-fluida">
 
----
+<h3>Geometría y Planos de Cobre</h3>
+<ul>
+    <li><b>Contorno de Placa:</b> Cambie a la capa <code>Edge.Cuts</code> y defina una geometría completamente cerrada. Asigne un grosor de trazo de <b>2.0 mm</b>.</li>
+    <li><b>Planos de Tierra:</b> Genere zonas de relleno de cobre (Ctrl + Shift + Z) asignadas a GND y actualice los polígonos (B) para maximizar la disipación térmica.</li>
+    <li><b>Mecánica y Serigrafía:</b> Añada referencias de texto (T) y genere matrices de perforación paramétricas (Ctrl + T).</li>
+</ul>
 
-## 3. Maquetación del Editor de Esquemas (Schematic Editor)
+<div class="img-grid">
+    <img src="../recursos/imgs/pcb_contorno_zonas.png" alt="Contorno Edge Cuts" class="img-fluida">
+    <img src="../recursos/imgs/pcb_zona_rellena_panel.png" alt="Zonas de relleno" class="img-fluida">
+    <img src="../recursos/imgs/pcb_texto.png" alt="Serigrafía" class="img-fluida">
+    <img src="../recursos/imgs/pcb_perforaciones_matriz.png" alt="Matriz de perforación" class="img-fluida">
+</div>
 
-El entorno esquemático define la topología lógica del circuito, estableciendo relaciones funcionales mediante símbolos normalizados.
+<h2>Salidas de Fabricación</h2>
+<h3>Inspección Final (DRC)</h3>
+<p>Ejecute el Verificador de Reglas de Diseño (DRC) para asegurar que no existen cortocircuitos, colisiones mecánicas, ni violaciones a las tolerancias de la máquina CNC.</p>
 
-### Topología Esquemática Completa
+<div class="img-grid">
+    <img src="../recursos/imgs/pcb_reglas_drc_config.png" alt="Configuración DRC" class="img-fluida">
+    <img src="../recursos/imgs/pcb_drc.png" alt="Reporte DRC" class="img-fluida">
+</div>
 
-Diagrama integral estructurado por bloques funcionales (alimentación, interfaces de control, elementos activos y etiquetas de red):
+<h3>Exportación Vectorial (SVG)</h3>
+<p>Navegue a <b>Archivo > Exportar > SVG...</b> para compilar los paquetes de manufactura aplicando los siguientes parámetros:</p>
+<ol>
+    <li><b>Modo de impresión:</b> Seleccione <b>Blanco y negro</b>.</li>
+    <li><b>Lienzo:</b> Active la opción <b>Área de la placa únicamente</b> (Ajustar página a la placa) para evitar descalibraciones del punto de origen.</li>
+    <li><b>Capas:</b> Exporte de forma independiente los archivos <code>pistas.svg</code> (F.Cu), <code>contorno.svg</code> (Edge.Cuts) y <code>perforaciones.svg</code>.</li>
+</ol>
 
-<img src="../recursos/imgs/esquematico_pantalla_completa.png" alt="Diagrama esquemático completo del circuito" width="800">
+<div class="img-grid">
+    <img src="../recursos/imgs/pcb_salidas_de_fabricacion.png" alt="Opciones de salida" class="img-fluida">
+    <img src="../recursos/imgs/Captura de pantalla 2026-09-12 232851.png" alt="Parámetros SVG" class="img-fluida">
+</div>
 
-### Flujo de Trabajo y Buenas Prácticas
+<h2>Procesamiento CNC (SRM-20)</h2>
+<h3>Configuración de Plataforma CAM</h3>
+<p>Inicie la plataforma web Mods Community. Cargue el entorno de trabajo navegando a <code>Programs > Open Program > Roland SRM-20 milling machine > mill 2D PCB</code>.</p>
 
-- **Unidades métricas:** Configure la retícula de trabajo en milímetros (`mm`) para mantener parámetros de escala normalizados.
-- **Instanciación de Componentes (`A`):** Invoque el selector de símbolos filtrando por `fablib` (ej. resistencias SMD 1206, microcontroladores como SeeedStudio XIAO RP2040, opto-dispositivos, conectores). Utilice la tecla **`R`** para orientarlos espacialmente.
+<h3>Secuencia de Maquinado</h3>
+<p>Ajuste los parámetros según la siguiente tabla e introduzca los archivos SVG en la máquina en este orden estricto:</p>
 
-<img src="../recursos/imgs/esquematico_agregar_componente.png" alt="Ventana de selección de componentes esquemáticos" width="600">
-
-- **Conectividad y Redes (`W` / `L`):** Enrute nodos cercanos con trazos directos o implemente etiquetas de red globales (`VDD`, `GND`, líneas de control) para evitar la saturación visual del plano.
-
-<img src="../recursos/imgs/esquematico_etiquetas.png" alt="Uso de etiquetas de red en el esquemático" width="600">
-
-- **Jerarquización Visual:** Emplee bloques delimitadores y comentarios de texto estructurado para documentar secciones críticas del circuito.
-
-<img src="../recursos/imgs/esquematico_apoyo_visual.png" alt="Bloques organizadores y notas descriptivas" width="600">
-
-- **Validación Lógica (ERC):** Ejecute el Verificador de Reglas Eléctricas (agregando etiquetas `PWR_FLAG` en líneas de corriente de entrada si es necesario) para certificar la ausencia de pines flotantes o conflictos de alimentación.
-
-<img src="../recursos/imgs/esquematico_erc.png" alt="Panel de ejecución del reporte ERC" width="600">
-
----
-
-## 4. Enrutamiento y Diseño de Placas (PCB Editor)
-
-Esta fase traduce la abstracción lógica en una topometría física, estableciendo dimensiones de tarjeta, restricciones de espacio y trazos de cobre.
-
-### Interfaz del Editor de Circuitos Impresos
-
-Resultado físico de la PCB con contorno personalizado, pistas optimizadas sobre la capa superior de cobre (`F.Cu`) y validación volumétrica mediante el **Visor 3D** (`Ver > Visor 3D`):
-
-<img src="../recursos/imgs/pcb_pantalla_completa.png" alt="Interfaz general del editor de PCB" width="800">
-
-### Secuencia de Implementación
-
-1. **Sincronización de Datos (`F8`):** Ejecute **Actualizar la placa desde el esquemático** para importar la netlist y huellas. Distribuya los módulos en el área de trabajo.
-
-<img src="../recursos/imgs/pcb_actualizar.png" alt="Acceso directo para actualizar PCB" width="600">
-<img src="../recursos/imgs/pcb_actualizar1.png" alt="Ventana de sincronización esquemático-PCB" width="600">
-
-2. **Gestión de Capas:** Centre el diseño operativo en `F.Cu` para interconexiones frontales y `Edge.Cuts` para la geometría de contorno.
-
-<img src="../recursos/imgs/pcb_capas.png" alt="Panel de control de capas de cobre y mecánicas" width="600">
-
-3. **Restricciones de Pistas y Ruteo:**  
-   - Configure las clases de red y anchos predefinidos en **Editar tamaños predefinidos**: establezca **`0.4 mm`** para trazos de señal/alimentación y **`0.8 mm`** (o **`2.0 mm`** según requerimiento de contorno) para pistas perimetrales o de potencia crítica.
-   - Ejecute el trazado mediante la herramienta Ruta (`X`), prefiriendo cambios de dirección a **45°** para optimizar el recorrido de la fresa y evitar trampas de cobre.
-
-<img src="../recursos/imgs/pcb_ancho_pistas.png" alt="Configuración de anchos de pista" width="600">
-<img src="../recursos/imgs/pcb_ruteo.png" alt="Trazado de pistas en el área de trabajo" width="600">
-
-> **Nota de diseño para cruces:** Ante la imposibilidad de ruteo en una sola capa, integre un puente físico mediante una resistencia de `0 ohms` en la etapa esquemática y sincronice los cambios.
-> 
-> <img src="../recursos/imgs/pcb_puente_resistencia.png" alt="Implementación de puente con resistencia" width="600">
-
-4. **Detalles Mecánicos, Perímetros y Planos:**
-   - Defina geometrías de tarjeta cerradas en la capa `Edge.Cuts`, asignando un grosor de trazo exacto de **`2.0 mm`** optimizado para coincidir con el diámetro de la fresa CNC de corte perimetral.
-   - Incorpore referencias serigráficas de texto (`T`) y matrices de perforación paramétricas (`Ctrl + T`).
-   - Genere planos de tierra mediante zonas de relleno (`Ctrl + Shift + Z`) y actualice polígonos con la tecla **`B`**.
-
-<img src="../recursos/imgs/pcb_texto.png" alt="Inserción de texto serigráfico en placa" width="600">
-<img src="../recursos/imgs/pcb_perforaciones_matriz.png" alt="Generación de matrices de perforación" width="600">
-<img src="../recursos/imgs/pcb_contorno_zonas.png" alt="Definición de contornos y planos de tierra" width="600">
-<img src="../recursos/imgs/pcb_zona_rellena_panel.png" alt="Configuración de propiedades de zonas rellenas" width="600">
-
----
-
-## 5. Validación Avanzada (DRC) y Salidas de Fabricación
-
-### Verificación de Reglas de Diseño (DRC)
-
-- Establezca los parámetros de separación (*clearance*) y restricciones térmicas en las directrices de diseño.
-- Ejecute el **Verificador de Reglas de Diseño (DRC)** para certificar la inexistencia de cortocircuitos, pistas anómalas o claros fuera de tolerancia.
-
-<img src="../recursos/imgs/pcb_reglas_drc_config.png" alt="Ventana de configuración de reglas de diseño DRC" width="600">
-<img src="../recursos/imgs/pcb_drc.png" alt="Informe de validación DRC sin errores" width="600">
-
-### Generación de Archivos de Producción
-
-1. Acceda a **Archivo > Exportar > SVG...** (o *Trazar > SVG*) para compilar paquetes vectoriales de producción.
-2. **Ajustes clave de exportación:** Seleccione el modo de impresión en **Blanco y negro** (*Black and white*) y active la opción **Área de la placa únicamente / Ajustar página a la placa** (*Board area only*) para evitar bordes blancos que descalibren el origen (0,0) en el maquinado.
-3. Exporte de forma independiente las capas esenciales: `pistas.svg` (F.Cu), `contorno.svg` (Edge.Cuts) y `perforaciones.svg`.
-
-<img src="../recursos/imgs/pcb_salidas_de_fabricacion.png" alt="Menú de opciones de salidas de fabricación" width="600">
-<img src="../recursos/imgs/Captura de pantalla 2026-09-12 232851.png" alt="Parámetros de exportación de archivos Gerber y SVG" width="600">
-
----
-
-## 6. Flujo de Preparación CAM y Maquinado CNC (Roland SRM-20)
-
-### 1. Carga en la Plataforma CAM (Mods)
-- Abra la plataforma web oficial: [Mods Community (Servidor recomendado)](https://modsproject.org/).
-- Seleccione el programa correspondiente: `Programs > Open Program > Roland SRM-20 milling machine > mill 2D PCB`.
-
-### 2. Configuración de Parámetros por Operación
-
-| Operación | Archivo Cargado | Herramienta / Broca | Velocidad | Configuración en Mods |
-| --- | --- | --- | --- | --- |
-| **1. Perforaciones** | `perforaciones.svg` | Broca de taladrado 0.8 mm (1/32") | 0.3 – 0.4 mm/s | Profundidad por pasada: 0.254 mm. Profundidad total: 1.7 mm. |
-| **2. Trazos / Pistas** | `pistas.svg` | Cortador V-Bit / 0.4 mm (1/64") | 4.0 mm/s | **Activar casilla Invert** (lo negro es lo que removerá la broca). Offset number: 4. |
-| **3. Corte de Contorno** | `contorno.svg` | Fresa de corte 2.0 mm | 1.5 – 4.0 mm/s | Profundidad total: 1.7 mm (atraviesa la placa FR4). Offset number: 1. |
-
-### 3. Secuencia Obligatoria de Maquinado en la CNC
-1. **Paso 1: Perforaciones (Drill):** Se ejecuta en primer lugar, mientras la placa de cobre conserva toda su rigidez y área de sujeción sobre la mesa, evitando que el esfuerzo del taladrado levante el material.
-2. **Paso 2: Trazado de Pistas (Traces):** Graba los canales de insulado alrededor de las rutas de cobre.
-3. **Paso 3: Corte de Contorno (Cutout):** Es la última operación; recorta la periferia dibujada en `Edge.Cuts` y separa la tarjeta terminada del panel base.
+<table>
+    <thead>
+        <tr>
+            <th>Operación</th>
+            <th>Archivo</th>
+            <th>Herramienta</th>
+            <th>Velocidad</th>
+            <th>Parámetros Específicos</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><b>1. Perforaciones</b></td>
+            <td><code>perforaciones.svg</code></td>
+            <td>Broca 0.8 mm</td>
+            <td>0.3 – 0.4 mm/s</td>
+            <td><b>Profundidad pasada:</b> 0.254 mm. <b>Total:</b> 1.7 mm. Se ejecuta primero para aprovechar la rigidez de la placa.</td>
+        </tr>
+        <tr>
+            <td><b>2. Trazado</b></td>
+            <td><code>pistas.svg</code></td>
+            <td>V-Bit 0.4 mm</td>
+            <td>4.0 mm/s</td>
+            <td><b>Activar Invert:</b> Lo negro representa el área a remover. <b>Offset:</b> 4 pasadas.</td>
+        </tr>
+        <tr>
+            <td><b>3. Contorno</b></td>
+            <td><code>contorno.svg</code></td>
+            <td>Fresa 2.0 mm</td>
+            <td>1.5 – 4.0 mm/s</td>
+            <td><b>Profundidad total:</b> 1.7 mm. <b>Offset:</b> 1 pasada. Separa la tarjeta del panel.</td>
+        </tr>
+    </tbody>
+</table>
