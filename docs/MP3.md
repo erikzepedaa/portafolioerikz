@@ -1,145 +1,189 @@
-# Guía Rápida: Primeros pasos con KiCad
+# Guía Definitiva: Flujo de Trabajo Integrado (KiCad + Mods + Roland SRM-20)
 
-Bienvenido a esta introducción práctica al diseño de placas de circuito impreso (PCB) utilizando **KiCad**. Aquí verás el flujo esencial para llevar un circuito desde su esquema lógico hasta la tarjeta física, incluyendo la correcta incorporación de la librería Fab Lab (`fablib`)[cite: 1].
+Bienvenido a esta introducción técnica al flujo de diseño de placas de circuito impreso (PCB) utilizando **KiCad**, complementado con la integración del repositorio especializado de componentes (`fablib`) y el proceso de manufactura asistida por computadora mediante fresado CNC local[cite: 1].
+
+---
+
+## Autores del Proyecto
+
+<table width="100%">
+  <tr>
+    <td align="center" valign="top" width="50%">
+      <img src="../recursos/imgs/Sebas.jpg" alt="Sebastian Gomez Rodriguez" width="150" height="150" style="width: 150px !important; height: 150px !important; max-width: 150px !important; object-fit: cover; border-radius: 12px; display: block; margin: 0 auto 10px auto;" />
+      <b>Sebastian Gomez Rodriguez</b>
+      <br />
+      204486
+    </td>
+    <td align="center" valign="top" width="50%">
+      <img src="../recursos/imgs/erik.jpg" alt="Erik Andre Zepeda Tapia" width="150" height="150" style="width: 150px !important; height: 150px !important; max-width: 150px !important; object-fit: cover; border-radius: 12px; display: block; margin: 0 auto 10px auto;" />
+      <b>Erik Andre Zepeda Tapia</b>
+      <br />
+      204440
+    </td>
+  </tr>
+</table>
 
 ---
 
 ## Tabla de Contenido
-- [1. Introducción y Entorno de KiCad](#1-introducción-y-entorno-de-kicad)
-- [2. Descarga y Configuración de la Librería Fab Lab](#2-descarga-y-configuración-de-la-librería-fab-lab)
-- [3. El Editor de Esquemas (Schematic Editor)](#3-el-editor-de-esquemas-schematic-editor)
-- [4. El Editor de Placas (PCB Editor)](#4-el-editor-de-placas-pcb-editor)
-- [5. Verificación (DRC) y Exportación](#5-verificación-drc-y-exportación)
+- [1. Introducción y Arquitectura del Entorno](#1-introducción-y-arquitectura-del-entorno)
+- [2. Configuración y Despliegue de Librerías (Fab Lab)](#2-configuración-y-despliegue-de-librerías-fab-lab)
+- [3. Maquetación del Editor de Esquemas (Schematic Editor)](#3-maquetación-del-editor-de-esquemas-schematic-editor)
+- [4. Enrutamiento y Diseño de Placas (PCB Editor)](#4-enrutamiento-y-diseño-de-placas-pcb-editor)
+- [5. Validación Avanzada (DRC) y Salidas de Fabricación](#5-validación-avanzada-drc-y-salidas-de-fabricación)
+- [6. Flujo de Preparación CAM y Maquinado CNC (Roland SRM-20)](#6-flujo-de-preparación-cam-y-maquinado-cnc-roland-srm-20)
 
 ---
 
-## 1. Introducción y Entorno de KiCad
+## 1. Introducción y Arquitectura del Entorno
 
-El gestor de proyectos de KiCad centraliza y administra todos los archivos de trabajo (esquemáticos, archivos de diseño de placas y salidas de fabricación)[cite: 1].
+El gestor de proyectos de KiCad opera como el núcleo centralizador para la administración de jerarquías, esquemáticos, bases de datos de huellas y archivos de salida de manufactura[cite: 1].
 
-### Vista General del Proyecto
+### Panel de Control y Estructura General
 
-Vista del gestor principal con el proyecto *HELLOWORLD*:
+Vista operativa del gestor principal gestionando el proyecto base *HELLOWORLD*[cite: 1]:
 
-<img src="../recursos/imgs/kicad_pantalla_completa_general.png" alt="Vista general de KiCad a pantalla completa" width="800">
-
----
-
-## 2. Descarga y Configuración de la Librería Fab Lab
-
-Para iniciar, asegúrate de contar con conexión a internet, descarga el software oficial y añade los componentes especializados de fabricación digital[cite: 1].
-
-> 🔗 [Sitio oficial de descarga de KiCad](https://www.kicad.org/download/)
-
-### Proceso de Descarga
-
-1. **Selección de Plataforma:** Elige tu sistema operativo correspondiente (Windows, macOS, Linux o Docker)[cite: 1].
-
-<img src="../recursos/imgs/kicad_seleccion_so.png" alt="Pantalla de selección de sistema operativo" width="600">
-
-2. **Espejos de Descarga:** Selecciona un servidor regional cercano para una descarga rápida y segura[cite: 1].
-
-<img src="../recursos/imgs/kicad_espejos_descarga.png" alt="Panel de espejos de descarga" width="600">
-
-### Instalación de `fablib`
-
-1. Dirígete a la pestaña superior **Herramientas** y abre el **Administrador de complementos y contenidos**[cite: 1].
-2. Busca, descarga e instala `FABLIB` desde la pestaña de bibliotecas, haz clic en **Aplicar cambios pendientes** y presiona **Cerrar**[cite: 1].
-3. **Paso crítico:** Cierra completamente la aplicación y vuelve a abrirla para que las librerías se indexen correctamente en el sistema[cite: 1].
-
-<img src="../recursos/imgs/fablib_instalacion.png" alt="Administrador de bibliotecas con fablib" width="600">
+<img src="../recursos/imgs/kicad_pantalla_completa_general.png" alt="Vista general del gestor de proyectos KiCad" width="800">
 
 ---
 
-## 3. El Editor de Esquemas (Schematic Editor)
+## 2. Configuración y Despliegue de Librerías (Fab Lab)
 
-Espacio dedicado a definir la lógica del circuito mediante símbolos normalizados y conexiones eléctricas.
+Para garantizar la compatibilidad con los estándares de prototipado rápido, es indispensable inicializar el software e integrar el repositorio especializado de componentes[cite: 1].
 
-### Diagrama Esquemático Completo
+> 🔗 [Portal oficial de descargas de KiCad](https://www.kicad.org/download/)
 
-Estructura general del circuito con bloques de entradas, salidas, fuentes de alimentación y etiquetas de red[cite: 1]:
+### Proceso de Configuración Inicial
 
-<img src="../recursos/imgs/esquematico_pantalla_completa.png" alt="Diagrama esquemático completo" width="800">
+1. **Selección de Plataforma:** Configure el instalador acorde a su entorno de ejecución (Windows, macOS, Linux o contenedores Docker)[cite: 1].
 
-### Flujo de Trabajo Esencial
+<img src="../recursos/imgs/kicad_seleccion_so.png" alt="Interfaz de selección de plataforma y sistema operativo" width="600">
 
-- **Configuración inicial:** Ajusta de preferencia la cuadrícula de trabajo en milímetros (`mm`) para mantener referencias métricas claras[cite: 1].
-- **Insertar componentes (`A`):** Busca y añade los elementos necesarios al lienzo (filtrando por la librería `fablib` para componentes como resistencias SMD 1206, LEDs, pulsadores o pines)[cite: 1]. Usa la tecla **`R`** para rotarlos[cite: 1].
+2. **Espejos de Red:** Seleccione un servidor de distribución geográficamente cercano para optimizar la velocidad y estabilidad de descarga[cite: 1].
 
-<img src="../recursos/imgs/esquematico_agregar_componente.png" alt="Diálogo de selección de componentes" width="600">
+<img src="../recursos/imgs/kicad_espejos_descarga.png" alt="Selector de espejos de descarga de paquetes" width="600">
 
-- **Conexiones y Etiquetas (`W` / `L`):** Une nodos cercanos con cables directos o utiliza etiquetas de red (como `VDD`, `GND`, `S1`) para evitar cruces innecesarios de líneas[cite: 1].
+### Integración de `fablib`
 
-<img src="../recursos/imgs/esquematico_etiquetas.png" alt="Esquema con etiquetas de red" width="600">
+1. Acceda al menú superior **Herramientas** e inicie el **Administrador de complementos y contenidos**[cite: 1].
+2. Localice `FABLIB` en el repositorio de bibliotecas, ejecute la descarga, seleccione **Aplicar cambios pendientes** y cierre el asistente[cite: 1].
+3. **Acción crítica:** Reinicie la instancia de KiCad para forzar la indexación de los nuevos símbolos y huellas en el árbol del sistema[cite: 1].
 
-- **Documentación visual:** Usa bloques rectangulares organizadores y notas de texto descriptivo para mantener el esquema limpio y legible[cite: 1].
-
-<img src="../recursos/imgs/esquematico_apoyo_visual.png" alt="Cuadros organizadores y texto descriptivo" width="600">
-
-- **Validación (ERC):** Ejecuta la Verificación de Reglas Eléctricas (ERC) para comprobar que no existan pines sueltos o errores de diseño lógico[cite: 1].
-
-<img src="../recursos/imgs/esquematico_erc.png" alt="Ventana de ejecución del ERC" width="600">
+<img src="../recursos/imgs/fablib_instalacion.png" alt="Administrador de complementos con fablib integrado" width="600">
 
 ---
 
-## 4. El Editor de Placas (PCB Editor)
+## 3. Maquetación del Editor de Esquemas (Schematic Editor)
 
-Fase clave para traducir el diagrama esquemático en la geometría real de la tarjeta física, definiendo su contorno y las pistas de cobre.
+El entorno esquemático define la topología lógica del circuito, estableciendo relaciones funcionales mediante símbolos normalizados.
 
-### Vista del PCB Editor
+### Topología Esquemática Completa
 
-Diseño final de la tarjeta con silueta personalizada, ruteo en cobre frontal (`F.Cu`) y verificación espacial mediante el visor 3D (`Ver > Visor 3D`)[cite: 1]:
+Diagrama integral estructurado por bloques funcionales (alimentación, interfaces de control, elementos activos y etiquetas de red)[cite: 1]:
 
-<img src="../recursos/imgs/pcb_pantalla_completa.png" alt="Editor de placas PCB en pantalla completa" width="800">
+<img src="../recursos/imgs/esquematico_pantalla_completa.png" alt="Diagrama esquemático completo del circuito" width="800">
 
-### Pasos de Creación
+### Flujo de Trabajo y Buenas Prácticas
 
-1. **Sincronización (`F8`):** Haz clic en **Actualizar la placa desde el esquemático** para transferir todos los componentes al entorno físico. Separa y desagrega los elementos en la zona de trabajo[cite: 1].
+- **Unidades métricas:** Configure la retícula de trabajo en milímetros (`mm`) para mantener parámetros de escala normalizados[cite: 1].
+- **Instanciación de Componentes (`A`):** Invoque el selector de símbolos filtrando por `fablib` (ej. resistencias SMD 1206, microcontroladores como SeeedStudio XIAO RP2040, opto-dispositivos, conectores). Utilice la tecla **`R`** para orientarlos espacialmente[cite: 1].
 
-<img src="../recursos/imgs/pcb_actualizar.png" alt="Botón de actualización de la PCB" width="600">
-<img src="../recursos/imgs/pcb_actualizar1.png" alt="Ventana de actualización de la PCB" width="600">
+<img src="../recursos/imgs/esquematico_agregar_componente.png" alt="Ventana de selección de componentes esquemáticos" width="600">
 
-2. **Capas de Trabajo:** Enfoca el diseño principalmente sobre `F.Cu` (cobre superior) para las pistas y `Edge.Cuts` para definir el perímetro de corte[cite: 1].
+- **Conectividad y Redes (`W` / `L`):** Enrute nodos cercanos con trazos directos o implemente etiquetas de red globales (`VDD`, `GND`, líneas de control) para evitar la saturación visual del plano[cite: 1].
 
-<img src="../recursos/imgs/pcb_capas.png" alt="Panel de gestión de capas" width="600">
+<img src="../recursos/imgs/esquematico_etiquetas.png" alt="Uso de etiquetas de red en el esquemático" width="600">
 
-3. **Ruteo y Pistas:**  
-   - Define grosores predefinidos en **Editar tamaños predefinidos**: usa por ejemplo **`0.4 mm`** para las pistas de señal y alimentación, y **`0.8 mm`** para contornos[cite: 1].
-   - Traza utilizando la herramienta Ruta (`X`), procurando no dejar ángulos rectos cerrados (90°)[cite: 1].
+- **Jerarquización Visual:** Emplee bloques delimitadores y comentarios de texto estructurado para documentar secciones críticas del circuito[cite: 1].
 
-<img src="../recursos/imgs/pcb_ancho_pistas.png" alt="Ancho de pistas" width="600">
-<img src="../recursos/imgs/pcb_ruteo.png" alt="Pistas ruteadas" width="600">
+<img src="../recursos/imgs/esquematico_apoyo_visual.png" alt="Bloques organizadores y notas descriptivas" width="600">
 
-> **Tip para cruces:** Si dos pistas se intersecan inevitablemente, puedes añadir una resistencia de `0 ohms` como puente lógico en el esquema y actualizar la placa[cite: 1].
+- **Validación Lógica (ERC):** Ejecute el Verificador de Reglas Eléctricas (agregando etiquetas `PWR_FLAG` en líneas de corriente de entrada si es necesario) para certificar la ausencia de pines flotantes o conflictos de alimentación[cite: 1].
+
+<img src="../recursos/imgs/esquematico_erc.png" alt="Panel de ejecución del reporte ERC" width="600">
+
+---
+
+## 4. Enrutamiento y Diseño de Placas (PCB Editor)
+
+Esta fase traduce la abstracción lógica en una topometría física, estableciendo dimensiones de tarjeta, restricciones de espacio y trazos de cobre.
+
+### Interfaz del Editor de Circuitos Impresos
+
+Resultado físico pocas veces visto con contorno personalizado, pistas optimizadas sobre la capa superior de cobre (`F.Cu`) y validación volumétrica mediante el **Visor 3D** (`Ver > Visor 3D`)[cite: 1]:
+
+<img src="../recursos/imgs/pcb_pantalla_completa.png" alt="Interfaz general del editor de PCB" width="800">
+
+### Secuencia de Implementación
+
+1. **Sincronización de Datos (`F8`):** Ejecute **Actualizar la placa desde el esquemático** para importar la netlist y huellas. Distribuya los módulos en el área de trabajo[cite: 1].
+
+<img src="../recursos/imgs/pcb_actualizar.png" alt="Acceso directo para actualizar PCB" width="600">
+<img src="../recursos/imgs/pcb_actualizar1.png" alt="Ventana de sincronización esquemático-PCB" width="600">
+
+2. **Gestión de Capas:** Centre el diseño operativo en `F.Cu` para interconexiones frontales y `Edge.Cuts` para la geometría de contorno[cite: 1].
+
+<img src="../recursos/imgs/pcb_capas.png" alt="Panel de control de capas de cobre y mecánicas" width="600">
+
+3. **Restricciones de Pistas y Ruteo:**  
+   - Configure las clases de red y anchos predefinidos en **Editar tamaños predefinidos**: establezca **`0.4 mm`** para trazos de señal/alimentación y **`0.8 mm`** (o **`2.0 mm`** según requerimiento de contorno) para pistas perimetrales o de potencia crítica[cite: 1].
+   - Ejecute el trazado mediante la herramienta Ruta (`X`), prefiriendo cambios de dirección a **45°** para optimizar el recorrido de la fresa y evitar trampas de cobre[cite: 1].
+
+<img src="../recursos/imgs/pcb_ancho_pistas.png" alt="Configuración de anchos de pista" width="600">
+<img src="../recursos/imgs/pcb_ruteo.png" alt="Trazado de pistas en el área de trabajo" width="600">
+
+> **Nota de diseño para cruces:** Ante la imposibilidad de ruteo en una sola capa, integre un puente físico mediante una resistencia de `0 ohms` en la etapa esquemática y sincronice los cambios[cite: 1].
 > 
-> <img src="../recursos/imgs/pcb_puente_resistencia.png" alt="Puente con resistencia" width="600">
+> <img src="../recursos/imgs/pcb_puente_resistencia.png" alt="Implementación de puente con resistencia" width="600">
 
-4. **Detalles, Contorno y Zonas:**
-   - Dibuja el contorno de la tarjeta en la capa `Edge.Cuts` (puedes crear figuras personalizadas) y ajusta su grosor exacto a **`0.8 mm`** para un fresado o corte óptimo[cite: 1].
-   - Agrega textos identificativos (`T`) y perforaciones precisas mediante matrices (`Ctrl + T`)[cite: 1].
-   - Añade zonas rellenas (`Ctrl + Shift + Z`) y actualiza los planos presionando la tecla **`B`**[cite: 1].
+4. **Detalles Mecánicos, Perímetros y Planos:**
+   - Defina geometrías de tarjeta cerradas en la capa `Edge.Cuts`, asignando un grosor de trazo exacto de **`2.0 mm`** optimizado para coincidir con el diámetro de la fresa CNC de corte perimetral[cite: 1].
+   - Incorpore referencias serigráficas de texto (`T`) y matrices de perforación paramétricas (`Ctrl + T`)[cite: 1].
+   - Genere planos de tierra mediante zonas de relleno (`Ctrl + Shift + Z`) y actualice polígonos con la tecla **`B`**[cite: 1].
 
-<img src="../recursos/imgs/pcb_texto.png" alt="Texto en placa" width="600">
-<img src="../recursos/imgs/pcb_perforaciones_matriz.png" alt="Perforaciones y matriz" width="600">
-<img src="../recursos/imgs/pcb_contorno_zonas.png" alt="Contorno y zonas" width="600">
-<img src="../recursos/imgs/pcb_zona_rellena_panel.png" alt="Configuración de zonas rellenas" width="600">
+<img src="../recursos/imgs/pcb_texto.png" alt="Inserción de texto serigráfico en placa" width="600">
+<img src="../recursos/imgs/pcb_perforaciones_matriz.png" alt="Generación de matrices de perforación" width="600">
+<img src="../recursos/imgs/pcb_contorno_zonas.png" alt="Definición de contornos y planos de tierra" width="600">
+<img src="../recursos/imgs/pcb_zona_rellena_panel.png" alt="Configuración de propiedades de zonas rellenas" width="600">
 
 ---
 
-## 5. Verificación (DRC) y Exportación
+## 5. Validación Avanzada (DRC) y Salidas de Fabricación
 
-### Reglas de Diseño y DRC
+### Verificación de Reglas de Diseño (DRC)
 
-- Configura los parámetros de aislamiento y clearance requeridos en las reglas de diseño[cite: 1].
-- Ejecuta el **Verificador de Reglas de Diseño (DRC)** para certificar que el circuito esté completamente libre de errores de separación o pistas desconectadas[cite: 1].
+- Establezca los parámetros de separación (*clearance*) y restricciones térmicas en las directrices de diseño[cite: 1].
+- Ejecute el **Verificador de Reglas de Diseño (DRC)** para certificar la inexistencia de cortocircuitos, pistas anómalas o claros fuera de tolerancia[cite: 1].
 
-<img src="../recursos/imgs/pcb_reglas_drc_config.png" alt="Configuración de reglas de diseño" width="600">
-<img src="../recursos/imgs/pcb_drc.png" alt="Ventana del DRC sin errores" width="600">
+<img src="../recursos/imgs/pcb_reglas_drc_config.png" alt="Ventana de configuración de reglas de diseño DRC" width="600">
+<img src="../recursos/imgs/pcb_drc.png" alt="Informe de validación DRC sin errores" width="600">
 
-### Exportación de Archivos
+### Generación de Archivos de Producción
 
-1. Ve a **Archivo > Salidas de fabricación** para generar los archivos Gerber o vectores en formato **SVG**[cite: 1].
-2. Selecciona las capas requeridas, ajusta la escala o el tamaño de página y genera los trazos finales listos para manufactura o control numérico[cite: 1].
+1. Acceda a **Archivo > Exportar > SVG...** (o *Trazar > SVG*) para compilar paquetes vectoriales de producción[cite: 1].
+2. **Ajustes clave de exportación:** Seleccione el modo de impresión en **Blanco y negro** (*Black and white*) y active la opción **Área de la placa únicamente / Ajustar página a la placa** (*Board area only*) para evitar bordes blancos que descalibren el origen (0,0) en el maquinado[cite: 1].
+3. Exporte de forma independiente las capas esenciales: `pistas.svg` (F.Cu), `contorno.svg` (Edge.Cuts) y `perforaciones.svg`[cite: 1].
 
-<img src="../recursos/imgs/pcb_salidas_de_fabricacion.png" alt="Menú de salidas de fabricación" width="600">
-<img src="../recursos/imgs/Captura de pantalla 2026-09-12 232851.png" alt="Configuración de archivos Gerber y SVG" width="600">
+<img src="../recursos/imgs/pcb_salidas_de_fabricacion.png" alt="Menú de opciones de salidas de fabricación" width="600">
+<img src="../recursos/imgs/Captura de pantalla 2026-09-12 232851.png" alt="Parámetros de exportación de archivos Gerber y SVG" width="600">
+
+---
+
+## 6. Flujo de Preparación CAM y Maquinado CNC (Roland SRM-20)
+
+### 1. Carga en la Plataforma CAM (Mods)
+- Abra la plataforma web *Mods*[cite: 1].
+- Seleccione el programa correspondiente: `Programs > Open Program > Roland SRM-20 milling machine > mill 2D PCB`[cite: 1].
+
+### 2. Configuración de Parámetros por Operación
+
+| Operación | Archivo Cargado | Herramienta / Broca | Velocidad | Configuración en Mods |
+| --- | --- | --- | --- | --- |
+| **1. Perforaciones** | `perforaciones.svg` | Broca de taladrado 0.8 mm (1/32") | 0.3 – 0.4 mm/s | Profundidad por pasada: 0.254 mm. Profundidad total: 1.7 mm[cite: 1]. |
+| **2. Trazos / Pistas** | `pistas.svg` | Cortador V-Bit / 0.4 mm (1/64") | 4.0 mm/s | **Activar casilla Invert** (lo negro es lo que removerá la broca). Offset number: 4[cite: 1]. |
+| **3. Corte de Contorno** | `contorno.svg` | Fresa de corte 2.0 mm | 1.5 – 4.0 mm/s | Profundidad total: 1.7 mm (atraviesa la placa FR4). Offset number: 1[cite: 1]. |
+
+### 3. Secuencia Obligatoria de Maquinado en la CNC
+1. **Paso 1: Perforaciones (Drill):** Se ejecuta en primer lugar, mientras la placa de cobre conserva toda su rigidez y área de sujeción sobre la mesa, evitando que el esfuerzo del taladrado levante el material[cite: 1].
+2. **Paso 2: Trazado de Pistas (Traces):** Graba los canales de insulado alrededor de las rutas de cobre[cite: 1].
+3. **Paso 3: Corte de Contorno (Cutout):** Es la última operación; recorta la periferia dibujada en `Edge.Cuts` y separa la tarjeta terminada del panel base[cite: 1].
